@@ -10,10 +10,10 @@
             <td>Corrective Action</td>
          </thead>
          {% for row in rows %}
-         {% if row["severity"] == 'Red' %}
+         {% if row["severity"] == 'Error' %}
             <tr bgcolor='FF6347'>
                <td>{{  row["count"]  }}</td>
-               <td>{{  row["pre_check"]  }}</td>  
+               <td>{{  row["validation_type"]  }}</td>  
                <td>{{  row["description"]  }}</td>  
 		{% if row["corrective_action"] is none %}
                <td></td>  
@@ -21,10 +21,10 @@
                <td>{{  row["corrective_action"]  }}</td> 
 		{% endif %} 
             </tr>
-         {% elif row["severity"] == 'Yellow' %}
+         {% elif row["severity"] == 'Warning' %}
             <tr bgcolor='FAFAD2'>
                <td>{{  row["count"]  }}</td>
-               <td>{{  row["pre_check"]  }}</td>  
+               <td>{{  row["validation_type"]  }}</td>  
                <td>{{  row["description"]  }}</td>  
 		{% if row["corrective_action"] is none %}
                <td></td>  
