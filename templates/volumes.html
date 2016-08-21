@@ -21,19 +21,19 @@
          
          {% for row in rows %}
             <tr>
-               <td>{{row["name"]}}</td>
-               <td>{{row["block_type"]}}</td>
-               <td> {{ row["total_size_GB"]}}</td>
+               <td>{{row["Volume"]}}</td>
+               <td>{{row["Format"]}}</td>
+               <td> {{ row["Total_Capacity(GB)"]}}</td>
                <td>{{row["storage_controller"]}}</td>  
-               <td>{{row["aggregate_name"]}}</td>  
+               <td>{{row["aggregate"]}}</td>  
                <td>{{row["security_style"]}}</td>  
-               <td>{{row["total_qtrees"]}}</td>  
-               <td>{{row["total_mapped_luns"]}}</td>  
-               <td>{{row["total_snapmirrors"]}}</td>  
-               <td>{{row["total_snapvaults"]}}</td>  
+               <td>{{row["qtrees"]}}</td>  
+               <td>{{row["luns"]}}</td>  
+               <td>{{row["snapmirrors"]}}</td>  
+               <td>{{row["snapvaults"]}}</td>  
                <td>{{row["state"]}}</td>  
-               <td>{{row["langauge"]}}</td>  
-               <td>{{row["vfiler_name"]}}</td>  
+               <td>{{row["Language"]}}</td>  
+               <td>{{row["vfiler"]}}</td>  
             </tr>
          {% endfor %}
       </table>
