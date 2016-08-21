@@ -37,60 +37,60 @@ def dashboard():
 	con = sql.connect(dbname)
 	con.row_factory = sql.Row
 	cur = con.cursor()
-	cur.execute("select count(*) from Storage_Controllers")
+	cur.execute("select count(*) from Storage_Systems_Summary")
 	result = cur.fetchone()
 	controller_count = result[0]
-	cur.execute("select count(*) from Vfilers where vfiler_name not in (select storage_controller from Vfilers)")
+	cur.execute("select count(*) from vFilers where vFiler not like 'vfiler0'")
 	result = cur.fetchone()
 	vfiler_count = result[0]
 	cur.execute("select count(*) from Aggregates")
 	result = cur.fetchone()
 	aggregate_count = result[0]
-	cur.execute("select count(*) from Aggregates where block_type like '32-bit'")
+	cur.execute("select count(*) from Aggregates where Format like '32-bit'")
 	result = cur.fetchone()
 	aggr_32_count = result[0]
 	cur.execute("select count(*) from Volumes")
 	result = cur.fetchone()
 	volume_count = result[0]
-	cur.execute("select count(*) from Volumes where block_type like '32-bit'")
+	cur.execute("select count(*) from Volumes where Format like '32-bit'")
 	result = cur.fetchone()
 	volume_32_count = result[0]
-	cur.execute("select count(*) from Volumes where type like 'trad'")
+	cur.execute("select count(*) from Volumes where Type like 'trad'")
 	result = cur.fetchone()
 	volume_trad_count = result[0]
 	cur.execute("select count(*) from Qtrees")
 	result = cur.fetchone()
 	qtree_count = result[0]
-	cur.execute("select count(*) from Luns")
+	cur.execute("select count(*) from LUNs")
 	result = cur.fetchone()
 	lun_count = result[0]
-	cur.execute("select count(*) from CIFS_Shares where LineID is not null")
+	cur.execute("select count(*) from CIFS_Shares where ID is not null")
 	result = cur.fetchone()
 	share_count = result[0]
 	cur.execute("select count(*) from NFS_Exports")
 	result = cur.fetchone()
 	export_count = result[0]
-	cur.execute("select cast(sum(replace(total_used_size_GB,',','')) as decimal (10,2)) as total from Volumes")
+	cur.execute("select cast(sum(replace(`Used_Capacity(GB)`,',','')) as decimal (10,2)) as total from Volumes")
 	space_used = cur.fetchall()
-	cur.execute("select count(*) from SnapMirror")
+	cur.execute("select count(*) from SnapMirrors")
 	result = cur.fetchone()
 	snapmirror_count = result[0]
-	cur.execute("select count(*) from SnapMirror where type like 'VSM'")
+	cur.execute("select count(*) from SnapMirrors where type like 'VSM'")
 	result = cur.fetchone()
 	vsm_count = result[0]
-	cur.execute("select count(*) from SnapMirror where type like 'QSM'")
+	cur.execute("select count(*) from SnapMirrors where type like 'QSM'")
 	result = cur.fetchone()
 	qsm_count = result[0]
 	cur.execute("select count(*) from SnapVault")
 	result = cur.fetchone()
 	snapvault_count = result[0]
-	cur.execute("select count(*) from SnapVault where type like 'OSSV'")
-	result = cur.fetchone()
-	ossv_count = result[0]
-	cur.execute("select count(*) from Transition_PreCheck_Summary where severity like 'Red'")
+#	cur.execute("select count(*) from SnapVault where type like 'OSSV'")
+#	result = cur.fetchone()
+#	ossv_count = result[0]
+	cur.execute("select count(*) from Config_PreCheck_Summary where severity like 'Error'")
 	result = cur.fetchone()
 	precheck_red_count = result[0]
-	cur.execute("select count(*) from Transition_PreCheck_Summary where severity like 'Yellow'")
+	cur.execute("select count(*) from Config_PreCheck_Summary where severity like 'Warning'")
 	result = cur.fetchone()
 	precheck_yellow_count = result[0]
 	return render_template("dashboard.html", 
@@ -111,7 +111,7 @@ def dashboard():
 				vsm_count = vsm_count, 
 				qsm_count = qsm_count, 
 				snapvault_count = snapvault_count, 
-				ossv_count = ossv_count, 
+#				ossv_count = ossv_count, 
 				precheck_red_count = precheck_red_count, 
 				precheck_yellow_count = precheck_yellow_count)
 
