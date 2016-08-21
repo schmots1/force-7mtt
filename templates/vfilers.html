@@ -19,16 +19,16 @@
          
          {% for row in rows %}
             <tr>
-               <td>{{ row["vfiler_name"] }}</td>
+               <td>{{ row["vfiler"] }}</td>
                <td>{{ row["storage_controller"] }}</td>
                <td>{{ row["status"] }}</td>
-               <td>{{ row["vol"] }}</td>  
-               <td>{{ row["qtree"] }}</td>  
-               <td>{{ row["lun"] }}</td>  
-               <td>{{ row["share"] }}</td>  
-               <td>{{ row["export"] }}</td>  
-               <td>{{ row["snapmirror"] }}</td>  
-               <td>{{ row["snapvault"] }}</td>  
+               <td>{{ row["volumes"] }}</td>  
+               <td>{{ row["qtrees"] }}</td>  
+               <td>{{ row["luns"] }}</td>  
+               <td>{{ row["cifs_shares"] }}</td>  
+               <td>{{ row["nfs_exports"] }}</td>  
+               <td>{{ row["snapmirrors"] }}</td>  
+               <td>{{ row["snapvaults"] }}</td>  
             </tr>
          {% endfor %}
       </table>
