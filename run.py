@@ -224,12 +224,7 @@ def aggregates():
 		con.row_factory = sql.Row
    
 		cur = con.cursor()
-		cur.execute("select Aggregates.*, count(Volumes.name) as vol from Aggregates\
-						 left join Volumes on Aggregates.name = Volumes.aggregate_name\
-						 and \
-						Aggregates.storage_controller = Volumes.storage_controller\
-						 group by Aggregates.Id\
-						 order by storage_controller,name")
+		cur.execute("select * from Aggregates order by Storage_Controller,Aggregate")
    
 		rows = cur.fetchall()
 	else:
@@ -238,14 +233,7 @@ def aggregates():
                 con.row_factory = sql.Row
   
                 cur = con.cursor()
-                cur.execute("select Aggregates.*, count(Volumes.name) as vol from Aggregates\
-                                                 left join Volumes on Aggregates.name = Volumes.aggregate_name\
-                                                 and \
-                                                Aggregates.storage_controller = Volumes.storage_controller\
-						where Aggregates.block_type like '32-bit'\
-                                                 group by Aggregates.LineId\
-                                                 order by storage_controller,name")
-
+                cur.execute("select * from Aggregates where `Format` like '32_bit' order by Storage_controller,Aggregate")
                 rows = cur.fetchall()
 
 	return render_template("aggregates.html",rows = rows, database = database)
