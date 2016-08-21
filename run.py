@@ -193,10 +193,10 @@ def controllers():
 	con.row_factory = sql.Row
 
 	cur = con.cursor()
-	cur.execute("SELECT Storage_Controllers.*, COUNT(Aggregates.storage_controller) AS aggr FROM Storage_Controllers\
+	cur.execute("SELECT Storage_Systems_Summary.*, COUNT(Aggregates.Storage_Controller) AS aggr FROM Storage_Systems_Summary\
 			LEFT JOIN Aggregates\
-			ON Storage_Controllers.storage_controller = Aggregates.storage_controller\
-			GROUP BY Storage_Controllers.storage_controller")
+			ON Storage_Systems_Summary.Storage_Controller = Aggregates.Storage_Controller\
+			GROUP BY Storage_Systems_Summary.Storage_Controller")
 
 	rows = cur.fetchall()
 	return render_template("storage_controllers.html",rows = rows,database = database)
