@@ -8,4 +8,4 @@ From within the directory start the application from a command prompt with 'pyth
 
 Your browser windows will open automatically to the application.
 
-Prepare UP files for upload with the UP_8.6.1.3_prepare.xls macro file.
+Open the AssemsmentWorkbook.xml file in excel and save it with an xlsx extention, that can be uploaded.
