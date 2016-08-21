@@ -17,12 +17,12 @@
          {% for row in rows %}
             <tr>
                <td>{{  row["storage_controller"]  }}</td>
-               <td>{{  row["vfiler_name"]  }}</td>
-               <td>{{  row["volume_name"]  }}</td>  
+               <td>{{  row["vfiler"]  }}</td>
+               <td>{{  row["volume"]  }}</td>  
                <td>{{  row["export_path"]  }}</td>  
                <td>{{  row["nosuid"]  }}</td>  
-               <td>{{  row["read_only"]  }}</td>  
-               <td>{{  row["read_write"]  }}</td>  
+               <td>{{  row["ro"]  }}</td>  
+               <td>{{  row["rw"]  }}</td>  
                <td>{{  row["root"]  }}</td>  
             </tr>
          {% endfor %}
