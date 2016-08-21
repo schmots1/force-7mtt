@@ -44,7 +44,7 @@
 	</tr>
 	<tr>
 		<td>
-			&nbsp&nbsp<a href="{{ url_for('volumes', database = database, special = "block_type", check = "32-bit") }}">32-bit Volumes</a>
+			&nbsp&nbsp<a href="{{ url_for('volumes', database = database, special = "Format", check = "32_bit") }}">32-bit Volumes</a>
 		</td>
 		<td>
 			&nbsp{{ volume_32_count }}
@@ -52,7 +52,7 @@
 	</tr>
 	<tr>
 		<td>
-			&nbsp&nbsp<a href="{{ url_for('volumes', database = database, special = "type", check = "trad") }}">Traditional Volumes
+			&nbsp&nbsp<a href="{{ url_for('volumes', database = database, special = "Type", check = "trad") }}">Traditional Volumes
 		</td>
 		<td>
 			&nbsp{{ volume_trad_count }}
