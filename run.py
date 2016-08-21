@@ -209,30 +209,7 @@ def vfilers():
 	con.row_factory = sql.Row
 
 	cur = con.cursor()
-	cur.execute("SELECT Vfilers.*, COUNT(Volumes.vfiler_name) AS vol,\
-					COUNT(Qtrees.vfiler_name) AS qtree,\
-					COUNT(Luns.vfiler_name) as lun,\
-					COUNT(Cifs_Shares.vfiler_name) as share,\
-					COUNT(NFS_Exports.vfiler_name) AS export,\
-					COUNT(SnapMirror.vfiler_name) AS snapmirror,\
-					COUNT(SnapVault.vfiler_name) as snapvault FROM Vfilers\
-					LEFT JOIN Volumes\
-					ON Vfilers.vfiler_name = Volumes.vfiler_name\
-					LEFT JOIN Qtrees\
-					ON Vfilers.vfiler_name = Qtrees.vfiler_name\
-					LEFT JOIN Luns\
-					ON Vfilers.vfiler_name = Luns.vfiler_name\
-					LEFT JOIN Cifs_Shares\
-					ON Vfilers.vfiler_name = Cifs_Shares.vfiler_name\
-					LEFT JOIN NFS_Exports\
-					ON Vfilers.vfiler_name = NFS_Exports.vfiler_name\
-					LEFT JOIN SnapMirror\
-					ON Vfilers.vfiler_name = SnapMirror.vfiler_name\
-					LEFT JOIN SnapVault\
-					ON Vfilers.vfiler_name = SnapVault.vfiler_name\
-					Where Vfilers.vfiler_name not like Vfilers.storage_controller\
-					GROUP BY Vfilers.vfiler_name")
-
+	cur.execute("SELECT * from vFilers where vfiler not like 'vfiler0'")
 	rows = cur.fetchall()
 	return render_template("vfilers.html",rows = rows,database = database)
 
