@@ -46,13 +46,13 @@ def dashboard():
 	cur.execute("select count(*) from Aggregates")
 	result = cur.fetchone()
 	aggregate_count = result[0]
-	cur.execute("select count(*) from Aggregates where Format like '32-bit'")
+	cur.execute("select count(*) from Aggregates where Format like '32_bit'")
 	result = cur.fetchone()
 	aggr_32_count = result[0]
 	cur.execute("select count(*) from Volumes")
 	result = cur.fetchone()
 	volume_count = result[0]
-	cur.execute("select count(*) from Volumes where Format like '32-bit'")
+	cur.execute("select count(*) from Volumes where Format like '32_bit'")
 	result = cur.fetchone()
 	volume_32_count = result[0]
 	cur.execute("select count(*) from Volumes where Type like 'trad'")
@@ -250,7 +250,7 @@ def volumes():
 		con.row_factory = sql.Row
    
 		cur = con.cursor()
-		cur.execute("select * from Volumes order by name,storage_controller")
+		cur.execute("select * from Volumes order by storage_controller,volume")
    
 		rows = cur.fetchall()
 		return render_template("volumes.html",rows = rows, database = database)
@@ -260,7 +260,7 @@ def volumes():
                 con.row_factory = sql.Row
 
                 cur = con.cursor()
-		query = "select * from Volumes where %s like '%s' order by name,storage_controller" % (special, check)
+		query = "select * from Volumes where %s like '%s' order by storage_controller,volume" % (special, check)
                 cur.execute(query)
    
                 rows = cur.fetchall()
@@ -275,7 +275,7 @@ def qtrees():
 	con.row_factory = sql.Row
    
 	cur = con.cursor()
-	cur.execute("select * from Qtrees order by qtree_name,storage_controller")
+	cur.execute("select * from Qtrees order by storage_controller,qtree_name")
    
 	rows = cur.fetchall()
 	return render_template("qtrees.html",rows = rows, database = database)
@@ -289,7 +289,7 @@ def luns():
 	con.row_factory = sql.Row
    
 	cur = con.cursor()
-	cur.execute("select * from Luns order by lun_name,storage_controller")
+	cur.execute("select LUNs.*,Lun_Map.iGroup as igroup from LUNs left join Lun_Map on LUNs.LUN_name = Lun_Map.LUN_name order by lun_name,storage_controller")
    
 	rows = cur.fetchall()
 	return render_template("luns.html",rows = rows, database = database)
@@ -303,7 +303,7 @@ def shares():
 	con.row_factory = sql.Row
    
 	cur = con.cursor()
-	cur.execute("select * from CIFS_Shares order by share_name,storage_controller")
+	cur.execute("select * from CIFS_Shares order by share,storage_controller")
    
 	rows = cur.fetchall()
 	return render_template("shares.html",rows = rows, database = database)
@@ -373,7 +373,7 @@ def precheck():
 	con.row_factory = sql.Row
    
 	cur = con.cursor()
-	cur.execute("select *, count(*) as count from Transition_PreCheck_Details group by pre_check order by severity")
+	cur.execute("select *, count(*) as count from Config_Precheck_Summary group by validation_type order by severity")
    
 	rows = cur.fetchall()
 	return render_template("precheck.html",rows = rows, database = database)
