@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+   <body>
+ <a href = "{{ url_for('dashboard', database = database) }}">Go back to dashboard</a>   
+      <table>
+	   <thead bgcolor = grey>
+            <td># of Occurances</td>
+            <td>Pre Check</td>
+            <td>Description</td>
+            <td>Corrective Action</td>
+         </thead>
+         {% for row in rows %}
+         {% if row["severity"] == 'Red' %}
+            <tr bgcolor='FF6347'>
+               <td>{{  row["count"]  }}</td>
+               <td>{{  row["pre_check"]  }}</td>  
+               <td>{{  row["description"]  }}</td>  
+		{% if row["corrective_action"] is none %}
+               <td></td>  
+		{% else %}
+               <td>{{  row["corrective_action"]  }}</td> 
+		{% endif %} 
+            </tr>
+         {% elif row["severity"] == 'Yellow' %}
+            <tr bgcolor='FAFAD2'>
+               <td>{{  row["count"]  }}</td>
+               <td>{{  row["pre_check"]  }}</td>  
+               <td>{{  row["description"]  }}</td>  
+		{% if row["corrective_action"] is none %}
+               <td></td>  
+		{% else %}
+               <td>{{  row["corrective_action"]  }}</td> 
+		{% endif %} 
+            </tr>
+	 {% endif %}
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+   <body>
+ <a href = "{{ url_for('dashboard', database = database) }}">Go back to dashboard</a>   
+      <table border = 1>
+         <thead bgcolor = grey>
+            <td>Name</td>
+            <td>Controller</td>
+            <td>Volume</td>
+            <td>OS</td>
+	    <td>iGroup</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{  row["lun_name"]  }}</td>
+               <td>{{  row["storage_controller"]  }}</td>
+               <td>{{  row["volume_name"]  }}</td>
+               <td>{{  row["os_type"]  }}</td>  
+               <td>{{  row["igroups_lunid"]  }}</td>  
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+   <body>
+ <a href = "{{ url_for('dashboard', database = database) }}">Go back to dashboard</a>   
+      <table border = 1>
+         <thead bgcolor = grey>
+            <td>Name</td>
+            <td>Controller</td>
+            <td>Security Style</td>
+            <td>Status</td>
+	    <td>Host Volume</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{  row["qtree_name"]  }}</td>
+               <td>{{  row["storage_controller"]  }}</td>
+               <td>{{  row["security_style"]  }}</td>
+               <td>{{  row["status"]  }}</td>  
+               <td>{{  row["volume_name"]  }}</td>  
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+  </body>
+</html>

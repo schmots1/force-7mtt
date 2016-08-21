@@ -1,0 +1,10 @@
+<html>
+<body>
+<h1>Detail Views</h1>
+{% for row in databases %}
+<a href="{{ url_for('dashboard') }}?database={{ row[12:-3] }}">{{ row[12:-3] }}</a><br />
+{% endfor %}
+<br>
+<a href="{{ url_for('uploaded_file') }}"> Upload new file for convert</a>
+</body>
+</html>

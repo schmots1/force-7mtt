@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+   <body>
+ <a href = "{{ url_for('dashboard', database = database) }}">Go back to dashboard</a>   
+      <table border = 1>
+         <thead bgcolor = grey>
+            <td>Controller</td>
+            <td>vFiler</td>
+            <td>Volume</td>
+            <td>Export</td>
+            <td>nosuid</td>
+            <td>Read-only Access</td>
+            <td>Read-write Access</td>
+            <td>Root Access</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{  row["storage_controller"]  }}</td>
+               <td>{{  row["vfiler_name"]  }}</td>
+               <td>{{  row["volume_name"]  }}</td>  
+               <td>{{  row["export_path"]  }}</td>  
+               <td>{{  row["nosuid"]  }}</td>  
+               <td>{{  row["read_only"]  }}</td>  
+               <td>{{  row["read_write"]  }}</td>  
+               <td>{{  row["root"]  }}</td>  
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+  </body>
+</html>

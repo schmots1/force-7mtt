@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+   <body>
+   
+      <a href = "{{ url_for('dashboard', database = database) }}">Go back to dashboard</a>
+      <table border = 1>
+         <thead>
+            <td>Name</td>
+            <td>Model</td>
+            <td>OnTap Version</td>
+            <td>Serial Number</td>
+            <td>Aggregate Count</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{ row["storage_controller"] }}</td>
+               <td>{{ row["system_model"] }}</td>
+               <td>{{ row["version"] }}</td>
+               <td>{{ row["system_serial_number"] }}</td>  
+               <td>{{ row["aggr"] }}</td>  
+            </tr>
+         {% endfor %}
+      </table>
+      
+  </body>
+</html>

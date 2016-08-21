@@ -1,0 +1,13 @@
+<html>
+<body>
+You are about to convert {{ excel_file }}. <br /> 
+<p>This process can take a while.  The larger the Excel file the longer the conversion.<br /> Do not close this window during this time.<br />
+A completion message will display when the conversion is done.</p>
+<form action="" method=get>
+<p>Enter the name for your database below and press convert.<br>
+<input type=text name=dbname>
+<input type=hidden name=excel value="{{ excel_file }}">
+<input type=submit value=convert>
+</form>
+</body>
+</html>

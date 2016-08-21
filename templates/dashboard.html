@@ -1,0 +1,161 @@
+<html>
+<body>
+<h1>{{ database }}</h1>
+<table border=1>
+	<tr>
+		<td width=200px>
+			<a href="{{ url_for('controllers') }}?database={{ database }}">Storage Controllers</a>
+		</td>
+		<td width=50px>
+			 &nbsp{{ controller_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('vfilers', database = database) }}">vFilers</a>
+		</td>
+		<td>
+			&nbsp{{ vfiler_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('aggregates', database = database) }}">Aggregates</a>
+		</td>
+		<td>
+			&nbsp{{ aggregate_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp&nbsp<a href="{{ url_for('aggregates', database = database, special = '32-bit') }}">32-bit Aggregates</a>
+		</td>
+		<td>
+			&nbsp{{ aggr_32_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('volumes') }}?database={{ database }}">Volumes</a>
+		</td>
+		<td>
+			&nbsp{{ volume_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp&nbsp<a href="{{ url_for('volumes', database = database, special = "block_type", check = "32-bit") }}">32-bit Volumes</a>
+		</td>
+		<td>
+			&nbsp{{ volume_32_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp&nbsp<a href="{{ url_for('volumes', database = database, special = "type", check = "trad") }}">Traditional Volumes
+		</td>
+		<td>
+			&nbsp{{ volume_trad_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('qtrees', database = database) }}">Qtrees</a>
+		</td>
+		<td>
+			&nbsp{{ qtree_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('luns', database = database) }}">Luns</a>
+		</td>
+		<td>
+			&nbsp{{ lun_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('shares', database = database) }}">Shares</a>
+		</td>
+		<td>
+			&nbsp{{ share_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('exports', database = database) }}">Exports</a>
+		</td>
+		<td>
+			&nbsp{{ export_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Space Used
+		</td>
+		<td>
+			{% for row in space_used %}
+			&nbsp{{ "{:,.2f}".format(row["total"]) }}
+			{% endfor %}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('snapmirror',database = database) }}">SnapMirrors</a>
+		</td>
+		<td>
+			&nbsp{{ snapmirror_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp&nbsp<a href="{{ url_for('snapmirror',database = database, special = 'VSM') }}">VSM</a>
+		</td>
+		<td>
+			&nbsp{{ vsm_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp&nbsp<a href="{{ url_for('snapmirror',database = database, special = 'QSM') }}">QSM</a>
+		</td>
+		<td>
+			&nbsp{{ qsm_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('snapvault',database = database) }}">SnapVaults</a>
+		</td>
+		<td>
+			&nbsp{{ snapvault_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp&nbspOSSV
+		</td>
+		<td>
+			&nbsp{{ ossv_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{{ url_for('precheck',database = database) }}">PreCheck Issues</a>
+		</td>
+		<td bgcolor=red>
+			&nbsp{{ precheck_red_count }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+		</td>
+		<td bgcolor=yellow>
+			&nbsp{{ precheck_yellow_count }}
+				
+</table>
+<a href="/">Back to Homepage</a>&nbsp<a href="{{ url_for('delete') }}?database={{ database }}">Delete Database</a>
+</body>
+</html>
+

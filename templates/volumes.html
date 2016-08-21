@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+   <body>
+ <a href = "{{ url_for('dashboard', database = database) }}">Go back to dashboard</a>   
+      <table border = 1>
+         <thead bgcolor = grey>
+            <td>Name</td>
+            <td>Block Type</td>
+            <td>Size</td>
+            <td>Controller</td>
+	    <td>Aggregate</td>
+	    <td>Securty Style</td>
+	    <td>Number of Qtrees</td>
+	    <td>Number of Mapped Luns</td>
+	    <td>Number of SnapMirrors</td>
+	    <td>Number of SnapVaults</td>
+	    <td>State</td>
+	    <td>Langauge</td>
+	    <td>vFiler</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{row["name"]}}</td>
+               <td>{{row["block_type"]}}</td>
+               <td> {{ row["total_size_GB"]}}</td>
+               <td>{{row["storage_controller"]}}</td>  
+               <td>{{row["aggregate_name"]}}</td>  
+               <td>{{row["security_style"]}}</td>  
+               <td>{{row["total_qtrees"]}}</td>  
+               <td>{{row["total_mapped_luns"]}}</td>  
+               <td>{{row["total_snapmirrors"]}}</td>  
+               <td>{{row["total_snapvaults"]}}</td>  
+               <td>{{row["state"]}}</td>  
+               <td>{{row["langauge"]}}</td>  
+               <td>{{row["vfiler_name"]}}</td>  
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+  </body>
+</html>

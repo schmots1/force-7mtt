@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+   <body>
+ <a href = "{{ url_for('dashboard', database = database) }}">Go back to dashboard</a>   
+      <table border = 1>
+         <thead bgcolor = grey>
+            <td>Storage Controller</td>
+            <td>Direction</td>
+            <td>SnapMirror Partner</td>
+            <td># of SnapMirrors</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{  row["storage_controller"]  }}</td>
+		{% if row["storage_controller"] == row["source_controller"] %}
+               <td>-></td>
+               <td>{{  row["destination_controller"]  }}</td>  
+		{% else %}
+               <td><-</td>
+               <td>{{  row["source_controller"]  }}</td>  
+		{% endif %}
+               <td>{{  row["count"]  }}</td>  
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+  </body>
+</html>

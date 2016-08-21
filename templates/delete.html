@@ -1,0 +1,7 @@
+<html>
+<body>
+<b>You are about to delete {{ database }}.  Are you sure?</b>
+<br />
+<a href="{{ url_for('delete') }}?database={{ database }}&confirm=yes">Yes, Delete</a>&nbsp&nbsp<a href="{{ url_for('home') }}">No, don't delete</a>
+</body>
+</html>
