@@ -13,11 +13,11 @@
          
          {% for row in rows %}
             <tr>
-               <td>{{ row["name"] }}</td>
+               <td>{{ row["aggregate"] }}</td>
                <td>{{ row["storage_controller"] }}</td>
-               <td> {{ row["block_type"] }}</td>
-               <td>{{ row["total_used_size_GB"] }}</td>  
-               <td>{{ row["vol"] }}</td>  
+               <td> {{ row["format"] }}</td>
+               <td>{{ row["Used_(GB)"] }}</td>  
+               <td>{{ row["Volume"] }}</td>  
             </tr>
          {% endfor %}
       </table>
